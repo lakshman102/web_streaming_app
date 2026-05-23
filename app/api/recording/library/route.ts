@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 import { RecordingManager } from '@/lib/services/recording-manager'
 
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const limit = parseInt(searchParams.get('limit') || '50')
 
-    await connectDB()
+    await dbConnect()
     const recordings = await recordingManager.getRecordings(user._id, limit)
 
     return NextResponse.json({

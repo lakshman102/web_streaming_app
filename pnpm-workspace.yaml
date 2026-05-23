@@ -1,0 +1,5 @@
+allowBuilds:
+  iconv: true
+  msgpackr-extract: true
+  node-icu-charset-detector: true
+  sharp: true

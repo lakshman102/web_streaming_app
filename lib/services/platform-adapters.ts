@@ -403,3 +403,20 @@ export class CustomRTMPAdapter {
     }
   }
 }
+
+export class PlatformAdapter {
+  static async getRtmpUrl(platform: string, userId: string): Promise<string> {
+    switch (platform) {
+      case 'youtube':
+        return `rtmps://a.rtmp.youtube.com/live2/${userId}`
+      case 'twitch':
+        return `rtmps://live-cdg.twitch.tv:443/app/${userId}`
+      case 'facebook':
+        return `rtmps://live-api-s.facebook.com:443/rtmp/${userId}`
+      case 'custom':
+        return process.env.CUSTOM_RTMP_URL || ''
+      default:
+        throw new Error(`Unsupported platform: ${platform}`)
+    }
+  }
+}

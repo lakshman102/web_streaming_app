@@ -8,7 +8,7 @@ import {
   TwitchAdapter,
   FacebookAdapter,
 } from '@/lib/services/platform-adapters'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 
 /**
  * Stop streaming to multiple platforms
@@ -16,7 +16,7 @@ import { connectDB } from '@/lib/db'
  */
 export async function POST(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const { streamSessionId } = await req.json()
 

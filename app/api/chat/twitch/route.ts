@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { ChatMessage } from '@/lib/models/chat-message'
 
 export async function GET(request: NextRequest) {
@@ -11,7 +11,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Channel required' }, { status: 400 })
     }
 
-    await connectDB()
+    await dbConnect()
 
     const messages = await ChatMessage.find({
       platform: 'twitch',

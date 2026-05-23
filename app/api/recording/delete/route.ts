@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 import { RecordingManager } from '@/lib/services/recording-manager'
 
@@ -21,7 +21,7 @@ export async function DELETE(request: NextRequest) {
       )
     }
 
-    await connectDB()
+    await dbConnect()
     await recordingManager.deleteRecording(recordingId)
 
     return NextResponse.json({

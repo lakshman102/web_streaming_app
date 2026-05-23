@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PlatformIntegration } from '@/lib/models/platform-integration'
 import { encryptionService } from '@/lib/services/encryption'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import axios from 'axios'
 
 /**
@@ -10,7 +10,7 @@ import axios from 'axios'
  */
 export async function POST(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const { code, userId } = await req.json()
 

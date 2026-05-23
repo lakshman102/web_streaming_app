@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PlatformIntegration } from '@/lib/models/platform-integration'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 
 /**
  * Get user's platform integrations
@@ -8,7 +8,7 @@ import { connectDB } from '@/lib/db'
  */
 export async function GET(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const userId = req.nextUrl.searchParams.get('userId')
 
@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
  */
 export async function DELETE(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const { integrationId } = await req.json()
 

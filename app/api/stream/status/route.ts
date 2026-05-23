@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { StreamDestination } from '@/lib/models/stream-destination'
 import { getRTMPManager } from '@/lib/services/rtmp-manager'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 
 /**
  * Get real-time stream status
@@ -9,7 +9,7 @@ import { connectDB } from '@/lib/db'
  */
 export async function GET(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const streamSessionId = req.nextUrl.searchParams.get('streamSessionId')
 

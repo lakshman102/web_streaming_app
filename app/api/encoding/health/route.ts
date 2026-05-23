@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 import { EncodingJob } from '@/lib/models/encoding-job'
 
@@ -20,7 +20,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    await connectDB()
+    await dbConnect()
 
     const jobs = await EncodingJob.find({
       streamSessionId,

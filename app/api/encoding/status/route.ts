@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 import { EncodingManager } from '@/lib/services/encoding-manager'
 
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    await connectDB()
+    await dbConnect()
     const status = await encodingManager.getEncodingStatus(streamSessionId)
 
     return NextResponse.json(status)

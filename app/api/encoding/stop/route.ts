@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 import { EncodingManager } from '@/lib/services/encoding-manager'
 
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    await connectDB()
+    await dbConnect()
     await encodingManager.stopEncoding(streamSessionId)
 
     return NextResponse.json({

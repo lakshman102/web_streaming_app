@@ -10,7 +10,7 @@ import {
   FacebookAdapter,
   CustomRTMPAdapter,
 } from '@/lib/services/platform-adapters'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 
 /**
  * Start streaming to multiple platforms
@@ -18,7 +18,7 @@ import { connectDB } from '@/lib/db'
  */
 export async function POST(req: NextRequest) {
   try {
-    await connectDB()
+    await dbConnect()
 
     const { streamSessionId, destinations } = await req.json()
 

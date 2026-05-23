@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ChatMessage } from '@/lib/models/chat-message'
-import { connectDB } from '@/lib/db'
+import { dbConnect } from '@/lib/db'
 import { verifyAuth } from '@/lib/auth'
 
 export async function POST(request: NextRequest) {
@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    await connectDB()
+    await dbConnect()
 
     if (action === 'delete') {
       await ChatMessage.updateMany(
